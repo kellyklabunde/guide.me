@@ -1,0 +1,425 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: white;
+    margin: 0;
+    display: flex;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+
+button {
+    background-color: white;
+    color: rgb(9, 126, 9);
+    border-radius: 15px;
+    border: 1px solid black;
+    padding-left: 3%;
+    padding-right: 3%;
+    cursor: pointer;
+    font-size: 15px;
+    align-self: center;
+}
+
+button:hover {
+    color: rgb(10, 15, 10);
+    background-color: rgb(56, 151, 56);
+}
+
+/* WELCOME PAGE */
+
+.title {
+    font-family: "RocknRoll One", sans-serif;
+    color: rgb(9, 126, 9);
+    font-size: 70px;
+    margin-bottom: 10px;
+    margin-top: auto;
+}
+
+.subtitle {
+    font-family: "Dosis", sans-serif;
+    font-size: 40px;
+    margin: 10px;
+    margin-bottom: 30px;
+}
+
+.registration {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.register {
+    display: flex;
+    align-items: center;
+}
+
+.register input {
+    margin-bottom: 20px;
+    font-size: 24px;
+    width: 300px;
+}
+
+.register button {
+    width: 100px;
+    align-items: center;
+}
+
+.register h2 {
+    font-family: "Lato", sans-serif;
+    justify-content: center;
+}
+
+.logo {
+    display: flex;
+    height: 600px;
+    margin-left: 50px;
+}
+
+#login {
+    height: 40px;
+}
+
+/* LOGIN */
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login p {
+    text-align: center;
+    margin: 10px;
+    margin-top: 20px;
+}
+
+.login input {
+    margin: 20px;
+    font-size: 24px;
+    width: 300px;
+}
+
+.login img {
+    width: 700px;
+}
+
+/* RESET PASSWORD */
+
+.resetPassword button {
+    margin-top: 10px;
+}
+
+/* LOGO COMPONENT */
+
+.flag {
+    width: 70px;
+    height: 70px;
+}
+
+/* APP  */
+
+.avatar {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(0, 0, 0);
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 100%;
+    padding-right: 2%;
+    padding-left: 2%;
+    padding-top: 1%;
+}
+
+header img {
+    width: 50px;
+    height: 50px;
+    margin-right: 5%;
+}
+
+/* PROFILE */
+
+.profile {
+    padding: 60px;
+    display: flex;
+}
+
+.profile .avatar {
+    display: flex;
+    width: 250px;
+    height: 250px;
+    cursor: pointer;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1px solid black;
+    object-fit: cover;
+}
+
+.profileInfo {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left: 20px;
+    border: 1px solid black;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* UPLOADER */
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(201, 201, 201);
+    height: 200px;
+    width: 500px;
+    position: absolute;
+    border: 1px solid black;
+    text-align: center;
+    transform: translate(-50%, 50%);
+    align-items: center;
+    left: 50%;
+}
+
+.modal p {
+    font-size: 30px;
+}
+
+.modal button {
+    float: right;
+    margin: 5px;
+}
+
+.modal img {
+    height: 35px;
+    margin-left: 5px;
+}
+
+.close {
+    align-self: flex-end;
+    margin-right: 2%;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/* OTHER PROFILE */
+
+.otherProfile img {
+    display: flex;
+    width: 250px;
+    height: 250px;
+    cursor: pointer;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1px solid black;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.otherProfileContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.otherProfile {
+    padding: 60px;
+    display: flex;
+}
+
+.otherProfileInfo {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    margin-left: 20px;
+    border: 1px solid black;
+    border-radius: 15px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.friendsOfFriend {
+    display: flex;
+    border: 1px solid black;
+    border-radius: 15px;
+    justify-content: center;
+    padding: 30px;
+    margin-left: 20px;
+}
+
+.friendsOfFriend a {
+    display: flex;
+}
+
+.friendsOfFriend img {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+/* FIND PEOPLE */
+
+.findPeople {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.imageUser {
+    display: flex;
+    max-height: 100px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.findPeople img {
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.resultsearch ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    list-style: none;
+}
+
+.resultsearch li a {
+    display: flex;
+    border-bottom: 1px solid rgb(56, 56, 56);
+    align-items: center;
+    padding: 10px;
+    width: 1000px;
+    justify-content: center;
+}
+
+.findPeople span {
+    display: flex;
+    flex-grow: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+/* FRIENDS */
+
+.friendsandwannabes {
+    display: flex;
+    align-items: flex-start;
+}
+
+.wannabeFriends {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: 10px;
+    margin-right: 200px;
+}
+
+.friends {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.friendsandwannabes img {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.friendsandwannabes ul {
+    display: flex;
+    font-size: 30px;
+    margin: 10px;
+}
+
+.friendsDescription {
+    height: 50px;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.friendsandwannabes button {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.friendsandwannabes a {
+    display: flex;
+    align-items: center;
+}
+
+/* CHAT */
+
+.chatPage {
+    display: flex;
+    margin-left: 2%;
+}
+
+.chat {
+    display: flex;
+    flex-direction: column;
+    border-top: 2px solid rgb(56, 56, 56);
+    height: 60%;
+    width: 600px;
+    overflow-y: auto;
+    margin-left: 10px;
+}
+
+.chat img {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    border-radius: 50%;
+    flex-shrink: 0;
+    padding: 10px;
+    object-fit: cover;
+}
+
+.chat p {
+    border-bottom: 1px solid rgb(150, 148, 148);
+}
+
+.textarea {
+    margin-top: 10px;
+    margin-right: 10px;
+    height: 50px;
+    width: 600px;
+}
+
+.chatAves {
+    display: flex;
+    height: 400px;
+    width: 400px;
+    align-items: center;
+}
