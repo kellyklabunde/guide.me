@@ -87,8 +87,6 @@ export default class Registration extends Component {
                             <img id="login" src="/images/login.png" />
                         </Link>
                     </form>
-
-                    <img className="logo" src="/images/logo.png" />
                 </div>
             </>
         );

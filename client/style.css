@@ -10,7 +10,7 @@ body {
 }
 
 main {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -35,58 +35,6 @@ button:hover {
 }
 
 /* WELCOME PAGE */
-
-.title {
-    font-family: "RocknRoll One", sans-serif;
-    color: rgb(9, 126, 9);
-    font-size: 70px;
-    margin-bottom: 10px;
-    margin-top: auto;
-}
-
-.subtitle {
-    font-family: "Dosis", sans-serif;
-    font-size: 40px;
-    margin: 10px;
-    margin-bottom: 30px;
-}
-
-.registration {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-}
-
-.register {
-    display: flex;
-    align-items: center;
-}
-
-.register input {
-    margin-bottom: 20px;
-    font-size: 24px;
-    width: 300px;
-}
-
-.register button {
-    width: 100px;
-    align-items: center;
-}
-
-.register h2 {
-    font-family: "Lato", sans-serif;
-    justify-content: center;
-}
-
-.logo {
-    display: flex;
-    height: 600px;
-    margin-left: 50px;
-}
-
-#login {
-    height: 40px;
-}
 
 /* LOGIN */
 

@@ -3,21 +3,22 @@ import { HashRouter, Route } from "react-router-dom";
 import Registration from "./registration";
 import Login from "./login";
 import ResetPassword from "./resetPassword";
+import "./welcome.css";
 
 export default function Welcome() {
     return (
-        <>
-            <h1 className="title">connecta</h1>
-            <h3 className="subtitle">
-                Welcome to our Brazilian community in Germany!
-            </h3>
+        <div className="welcome">
+            <div className="header">
+                <h1>guide.me</h1>
+                <img src="./images/Logo.png" />
+            </div>
             <HashRouter>
                 <>
                     <Route exact path="/" component={Registration} />
-                    <Route path="/login" component={Login} />
+                    <Route exact path="/" component={Login} />
                     <Route path="/resetpassword" component={ResetPassword} />
                 </>
             </HashRouter>
-        </>
+        </div>
     );
 }
