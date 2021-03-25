@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
+import "./registration.css";
 
 import axios from "./axios";
 
@@ -50,7 +51,8 @@ export default class Registration extends Component {
         return (
             <>
                 <div className="register">
-                    <form className="registration" onSubmit={this.handleSubmit}>
+                    <form onSubmit={this.handleSubmit}>
+                        <h2>New here?</h2>
                         <h2>Please register</h2>
                         {this.state.error && <p>OH OH something went wrong</p>}
                         <input
@@ -82,10 +84,6 @@ export default class Registration extends Component {
                             onChange={this.handleChange}
                         />
                         <button type="submit">Register</button>
-                        <Link to="/login">
-                            Log in
-                            <img id="login" src="/images/login.png" />
-                        </Link>
                     </form>
                 </div>
             </>
