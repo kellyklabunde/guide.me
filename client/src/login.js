@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
+import "./login.css";
 
 import axios from "./axios";
 
@@ -38,10 +39,9 @@ export default class Registration extends Component {
     render() {
         return (
             <div className="login">
-                <img src="/images/pattern.png" />
-                <h2>Please login:</h2>
                 {this.state.error && <p>OH OH something went wrong</p>}
-                <form className="registration" onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit}>
+                    <h2>Please login:</h2>
                     <input
                         type="email"
                         name="email"
@@ -57,13 +57,9 @@ export default class Registration extends Component {
                         onChange={this.handleChange}
                     />
                     <button type="submit">Login</button>
+                    <p>Forgot your password?</p>
                     <p>
-                        Forgot your password?
-                        <Link to="/resetpassword"> Reset Password</Link>
-                    </p>
-                    <p>
-                        New here?
-                        <Link to="/"> Sign up for new Account</Link>
+                        <Link to="/resetpassword">Reset Password</Link>
                     </p>
                 </form>
             </div>

@@ -1,15 +1,25 @@
 import React from "react";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import { GOOGLE_API_KEY } from "/client/secrets.json";
+import { Marker } from "@react-google-maps/api";
 
 const containerStyle = {
-    width: "400px",
-    height: "400px",
+    width: "800px",
+    height: "500px",
 };
 
 const center = {
-    lat: -3.745,
-    lng: -38.523,
+    lat: 37.772,
+    lng: -122.214,
+};
+
+const position = {
+    lat: 37.772,
+    lng: -122.214,
+};
+
+const onLoadMarker = (marker) => {
+    console.log("marker: ", marker);
 };
 
 function MyComponent() {
@@ -38,6 +48,7 @@ function MyComponent() {
             onLoad={onLoad}
             onUnmount={onUnmount}
         >
+            <Marker onLoad={onLoadMarker} position={position} />
             {/* Child components, such as markers, info windows, etc. */}
             <></>
         </GoogleMap>

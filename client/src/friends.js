@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { receiveFriendsWannabes, unfriend, acceptFriend } from "./actions";
+import "./friends.css";
 
 export default function Friends() {
     const dispatch = useDispatch();

@@ -10,6 +10,7 @@ import OtherProfile from "./otherProfile";
 import FindPeople from "./findPeople";
 import Friends from "./friends";
 import GoogleMap from "./googleMap";
+import "./app.css";
 
 export default class App extends Component {
     constructor(props) {
@@ -56,46 +57,36 @@ export default class App extends Component {
         return (
             <>
                 <BrowserRouter>
-                    <header>
-                        <Link to="/chat">
-                            <img src="/images/chat.png" />
-                        </Link>
-                        <Link to="/friends">
-                            <img src="/images/friends.png" />
-                        </Link>
-                        <Link to="/findPeople">
-                            <img src="/images/search.png" />
-                        </Link>
-                        <Link to="/">
-                            <img src="/images/homepage.png" />
-                        </Link>
-                        <ProfilePic
-                            first={this.state.first}
-                            image={this.state.image}
-                            last={this.state.last}
-                            toggleModal={this.toggleModal}
-                        />
-                    </header>
+                    <div className="menu-container">
+                        <div className="guide-me">
+                            <h1>guide.me</h1>
+                            <img src="./images/Logo.png" />
+                        </div>
+                        <div className="navigation">
+                            <Link to="/friends">
+                                <img src="/images/friends.png" />
+                            </Link>
+                            <Link to="/findPeople">
+                                <img src="/images/search.png" />
+                            </Link>
+                            <Link to="/">
+                                <img src="/images/homepage.png" />
+                            </Link>
+                            <ProfilePic
+                                className="avatar"
+                                first={this.state.first}
+                                image={this.state.image}
+                                last={this.state.last}
+                                toggleModal={this.toggleModal}
+                            />
+                        </div>
+                    </div>
                     <>
-                        <Route
-                            exact
-                            path="/"
-                            render={() => (
-                                <Profile
-                                    id={this.state.id}
-                                    first={this.state.first}
-                                    last={this.state.last}
-                                    image={this.state.image}
-                                    bio={this.state.bio}
-                                    toggleModal={this.toggleModal}
-                                    updateUser={this.updateUser}
-                                />
-                            )}
-                        />
+                        <Route exact path="/" render={() => <GoogleMap />} />
+                        <Route path="/profile" component={Profile} />
                         <Route path="/user/:id" component={OtherProfile} />
                         <Route path="/findPeople" component={FindPeople} />
                         <Route path="/friends" component={Friends} />
-                        <Route path="/googleMap" component={GoogleMap} />
                     </>
                 </BrowserRouter>
                 {this.state.uploaderVisible && (
@@ -104,6 +95,7 @@ export default class App extends Component {
                         updateUser={this.updateUser}
                     />
                 )}
+                <footer>hello</footer>
             </>
         );
     }

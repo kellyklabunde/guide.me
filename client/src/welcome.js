@@ -14,9 +14,14 @@ export default function Welcome() {
             </div>
             <HashRouter>
                 <>
-                    <Route exact path="/" component={Registration} />
-                    <Route exact path="/" component={Login} />
-                    <Route path="/resetpassword" component={ResetPassword} />
+                    <div className="form-container">
+                        <Route exact path="/" component={Registration} />
+                        <Route exact path="/" component={Login} />
+                        <Route
+                            path="/resetpassword"
+                            component={ResetPassword}
+                        />
+                    </div>
                 </>
             </HashRouter>
         </div>

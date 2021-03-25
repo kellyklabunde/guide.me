@@ -1,0 +1,63 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    flex-grow: 1;
+}
+
+.avatar {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+.menu-container {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #535e6b;
+    height: 70px;
+    align-items: center;
+}
+
+.menu-container img {
+    width: 50px;
+    height: 50px;
+    margin-right: 5%;
+}
+
+.menu-container h1 {
+    font-family: "PT Sans Caption", sans-serif;
+    color: #33b9cb;
+    font-size: 40px;
+    margin-bottom: 10px;
+    margin-left: 2%;
+}
+
+.guide-me {
+    display: flex;
+}
+
+.guide-me img {
+    margin-left: 10px;
+    height: 50px;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    width: 270px;
+}
+
+footer {
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    align-items: flex-end;
+}

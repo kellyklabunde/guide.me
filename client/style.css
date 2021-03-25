@@ -38,28 +38,6 @@ button:hover {
 
 /* LOGIN */
 
-.login {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.login p {
-    text-align: center;
-    margin: 10px;
-    margin-top: 20px;
-}
-
-.login input {
-    margin: 20px;
-    font-size: 24px;
-    width: 300px;
-}
-
-.login img {
-    width: 700px;
-}
-
 /* RESET PASSWORD */
 
 .resetPassword button {
@@ -74,33 +52,6 @@ button:hover {
 }
 
 /* APP  */
-
-.avatar {
-    width: 70px;
-    height: 70px;
-    object-fit: cover;
-    cursor: pointer;
-    border-radius: 50px;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid rgb(0, 0, 0);
-    margin-left: 5%;
-    margin-right: 5%;
-    width: 100%;
-    padding-right: 2%;
-    padding-left: 2%;
-    padding-top: 1%;
-}
-
-header img {
-    width: 50px;
-    height: 50px;
-    margin-right: 5%;
-}
 
 /* PROFILE */
 
@@ -273,59 +224,6 @@ header img {
 }
 
 /* FRIENDS */
-
-.friendsandwannabes {
-    display: flex;
-    align-items: flex-start;
-}
-
-.wannabeFriends {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    margin: 10px;
-    margin-right: 200px;
-}
-
-.friends {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    margin: 10px;
-}
-
-.friendsandwannabes img {
-    display: flex;
-    width: 100px;
-    height: 100px;
-    cursor: pointer;
-    border-radius: 50%;
-    flex-shrink: 0;
-    object-fit: cover;
-    margin-right: 10px;
-}
-
-.friendsandwannabes ul {
-    display: flex;
-    font-size: 30px;
-    margin: 10px;
-}
-
-.friendsDescription {
-    height: 50px;
-    border-bottom: 1px solid black;
-    margin-bottom: 10px;
-}
-
-.friendsandwannabes button {
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-
-.friendsandwannabes a {
-    display: flex;
-    align-items: center;
-}
 
 /* CHAT */
 

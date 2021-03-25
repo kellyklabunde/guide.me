@@ -1,0 +1,62 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+.friendsandwannabes {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-left: 10%;
+    width: 300px;
+}
+
+/* .wannabeFriends {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: 10px;
+    margin-right: 200px;
+}
+
+.friends {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: 10px;
+} */
+
+.friendsandwannabes img {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.friendsandwannabes ul {
+    display: flex;
+    font-size: 30px;
+    margin: 10px;
+}
+
+.friendsDescription {
+    height: 50px;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    width: 300px;
+}
+
+.friendsandwannabes button {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.friendsandwannabes a {
+    display: flex;
+    align-items: center;
+}

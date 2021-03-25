@@ -4,24 +4,30 @@
     margin: 0;
 }
 
-.register {
+.login {
     display: flex;
 }
 
-.register form {
+.login form {
     display: flex;
     flex-direction: column;
     text-align: left;
-    margin-top: 10%;
+    margin-top: 27%;
+    margin-left: 40%;
 }
 
-.register input {
+.login p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.login input {
     margin-bottom: 15px;
     font-size: 20px;
     width: 250px;
 }
 
-.register h2 {
+.login h2 {
     text-align: center;
     font-size: 30px;
     font-weight: bold;
@@ -41,6 +47,7 @@ button {
     font-size: 15px;
     align-self: center;
     font-weight: bold;
+    margin-bottom: 20px;
 }
 
 button:hover {
