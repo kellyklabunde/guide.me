@@ -3,14 +3,13 @@ import { Component } from "react";
 
 import axios from "./axios";
 
-import Chat from "./chat";
 import Profile from "./profile";
-import Logo from "./logo";
 import ProfilePic from "./profilePic";
 import Uploader from "./uploader";
 import OtherProfile from "./otherProfile";
 import FindPeople from "./findPeople";
 import Friends from "./friends";
+import GoogleMap from "./googleMap";
 
 export default class App extends Component {
     constructor(props) {
@@ -58,7 +57,6 @@ export default class App extends Component {
             <>
                 <BrowserRouter>
                     <header>
-                        <Logo />
                         <Link to="/chat">
                             <img src="/images/chat.png" />
                         </Link>
@@ -97,7 +95,7 @@ export default class App extends Component {
                         <Route path="/user/:id" component={OtherProfile} />
                         <Route path="/findPeople" component={FindPeople} />
                         <Route path="/friends" component={Friends} />
-                        <Route path="/chat" component={Chat} />
+                        <Route path="/googleMap" component={GoogleMap} />
                     </>
                 </BrowserRouter>
                 {this.state.uploaderVisible && (

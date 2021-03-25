@@ -1,6 +1,5 @@
 import ProfilePic from "./profilePic";
 import BioEditor from "./bioEditor";
-import OnlineUsers from "./onlineUsers";
 
 export default function Profile({
     first,
