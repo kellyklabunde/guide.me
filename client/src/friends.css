@@ -4,28 +4,17 @@
     margin: 0;
 }
 
+.friends-page {
+    display: flex;
+}
+
 .friendsandwannabes {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    margin-left: 10%;
+    margin-left: 5%;
     width: 300px;
 }
-
-/* .wannabeFriends {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    margin: 10px;
-    margin-right: 200px;
-}
-
-.friends {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    margin: 10px;
-} */
 
 .friendsandwannabes img {
     display: flex;
@@ -44,11 +33,31 @@
     margin: 10px;
 }
 
+.wannabeDescription {
+    height: 50px;
+    margin-bottom: 10px;
+    margin-top: 5%;
+    width: 300px;
+}
+
+.wannabeDescription h3 {
+    font-family: "Cairo", sans-serif;
+    font-size: 25px;
+    color: #20252b;
+}
+
 .friendsDescription {
     height: 50px;
-    border-bottom: 1px solid black;
     margin-bottom: 10px;
+    border-top: 2px solid #20252b;
+    margin-top: 5%;
     width: 300px;
+}
+
+.friendsDescription h3 {
+    font-family: "Cairo", sans-serif;
+    font-size: 25px;
+    color: #20252b;
 }
 
 .friendsandwannabes button {
@@ -59,4 +68,56 @@
 .friendsandwannabes a {
     display: flex;
     align-items: center;
+    text-decoration: none;
+    color: black;
+}
+
+.wannabe-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.find-friends {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-left: 10%;
+    width: 300px;
+}
+
+.imageUser {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.resultsearch ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    list-style: none;
+}
+
+.resultsearch li a {
+    display: flex;
+    border-bottom: 1px solid rgb(56, 56, 56);
+    align-items: center;
+    padding: 10px;
+    width: 300px;
+    justify-content: center;
+}
+
+span {
+    display: flex;
+    flex-grow: 0;
+    align-items: center;
+    justify-content: center;
+    font-family: "Cairo", sans-serif;
+    font-size: 25px;
+    color: #20252b;
 }

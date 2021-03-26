@@ -64,7 +64,8 @@ main {
 footer {
     font-size: 10px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     margin-top: auto;
-    align-items: flex-end;
+    margin-bottom: 3px;
+    color: #33b9cb;
 }

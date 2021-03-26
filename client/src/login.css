@@ -29,11 +29,10 @@
 
 .login h2 {
     text-align: center;
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 25px;
     margin-bottom: 10px;
     color: #20252b;
-    font-family: "Amatic SC", cursive;
+    font-family: "Architects Daughter", cursive;
 }
 
 button {

@@ -116,7 +116,9 @@ export default class App extends Component {
                         updateUser={this.updateUser}
                     />
                 )}
-                <footer>hello</footer>
+                <footer>
+                    Kelly Klabunde - full-stack web developer student - 2021
+                </footer>
             </>
         );
     }

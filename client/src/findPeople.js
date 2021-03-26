@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "./friends.css";
 
 import axios from "./axios";
 
@@ -29,10 +30,9 @@ export default function FindPeople() {
     console.log(people);
 
     return (
-        <div className="findPeople">
+        <>
             <span>
-                Find Friends
-                <img src="/images/search.png" />
+                Find Friends:
                 <input name="Person" type="text" onChange={handleChange} />
             </span>
             <div className="resultsearch">
@@ -53,6 +53,6 @@ export default function FindPeople() {
                     ))}
                 </ul>
             </div>
-        </div>
+        </>
     );
 }
