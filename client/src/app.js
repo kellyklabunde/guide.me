@@ -17,6 +17,10 @@ export default class App extends Component {
         super(props);
 
         this.state = {
+            markerArr: [
+                { lat: 2100, lng: 2200 },
+                { lat: 1500, lng: 1800 },
+            ],
             first: "",
             last: "",
             email: "",
@@ -53,6 +57,17 @@ export default class App extends Component {
         this.setState(user);
     }
 
+    createArr() {
+        this.setState({
+            markerArr: [
+                { lat: 2100, lng: 2200 },
+                { lat: 1500, lng: 1800 },
+            ],
+        });
+        console.log("abisdabsdbiajsfsdjifgisdgbisdfbisd");
+        console.log(this.state.markerArr);
+    }
+
     render() {
         return (
             <>
@@ -82,7 +97,13 @@ export default class App extends Component {
                         </div>
                     </div>
                     <>
-                        <Route exact path="/" render={() => <GoogleMap />} />
+                        <Route
+                            exact
+                            path="/"
+                            render={() => (
+                                <GoogleMap markerArr={this.state.markerArr} />
+                            )}
+                        />
                         <Route path="/profile" component={Profile} />
                         <Route path="/user/:id" component={OtherProfile} />
                         <Route path="/findPeople" component={FindPeople} />
