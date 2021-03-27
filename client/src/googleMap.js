@@ -1,45 +1,27 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import {
+    GoogleMap,
+    useJsApiLoader,
+    Marker,
+    InfoWindow,
+} from "@react-google-maps/api";
 import secrets from "/client/secrets.json";
-import { Marker, InfoWindow } from "@react-google-maps/api";
+
+const center = {
+    lat: 37.772,
+    lng: 122.214,
+};
 
 function MyComponent(markerArr) {
-    console.log("CHAAAAAAAAAAAAAAAAAAAAAA");
-
-    console.log(markerArr);
     const [showInfoWindow, setShowInfoWindow] = useState("");
-    // const [list1, setlist1] = useState([]);
 
-    // setlist1([
-    //     { lat: 2100, lng: 2200 },
-    //     { lat: 1500, lng: 1800 },
-    // ]);
-
-    const lista2 = [
-        { lat: 37.772, lng: 122.214 },
-        { lat: 33.772, lng: -109.214 },
-    ];
-
-    console.log("SUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
+    console.log("Google Maps Component did mount");
     console.log(markerArr.markerArr);
-    console.log(lista2);
-
-    console.log("SUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
 
     const containerStyle = {
         width: "800px",
         height: "500px",
-    };
-
-    const center = {
-        lat: 37.772,
-        lng: -122.214,
-    };
-
-    const position = {
-        lat: 32.772,
-        lng: -12.214,
     };
 
     const onLoadMarker = (marker) => {
@@ -67,25 +49,24 @@ function MyComponent(markerArr) {
         setMap(null);
     }, []);
 
-    function handleClick(e) {
-        setShowInfoWindow(true);
-        console.log("HANDLEEEEEEEEEEEEEEEEEEEEEEEEE CLICKKKKK");
-        console.log(e);
+    function handleClickMarker(marker) {
+        console.log("handle click marker");
+        setShowInfoWindow(marker);
     }
 
-    function onCloseClickInfoWindow(e) {
-        setShowInfoWindow(false);
-        console.log(e);
+    function handleClickMap(event) {
+        console.log("handle click map");
+        console.log(event);
     }
 
     return isLoaded ? (
         <>
-            {lista2.map((marker) => (
+            {/* {markerArr.markerArr.map((marker) => (
                 <li key={marker.lat}>
                     {marker.lat}
                     {marker.lng}
                 </li>
-            ))}
+            ))} */}
 
             <GoogleMap
                 mapContainerStyle={containerStyle}
@@ -93,31 +74,31 @@ function MyComponent(markerArr) {
                 zoom={10}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
+                onClick={handleClickMap}
             >
                 <>
-                    {lista2.map((marker) => (
+                    {markerArr.markerArr.map((marker) => (
                         <li key={marker.lat}>
                             <Marker
-                                onClick={handleClick}
+                                onClick={() => {
+                                    handleClickMarker(marker);
+                                }}
                                 onLoad={onLoadMarker}
+                                clickable={true}
                                 position={marker}
                             />
                         </li>
                     ))}
-
-                    <Marker
-                        onClick={handleClick}
-                        onLoad={onLoadMarker}
-                        position={position}
-                    />
-                    {showInfoWindow == true && (
+                    {showInfoWindow && (
                         <InfoWindow
-                            onLoad={onLoadInfoWindow}
-                            onCloseClick={onCloseClickInfoWindow}
-                            position={position}
+                            onCloseClick={() => {
+                                setShowInfoWindow(null);
+                            }}
+                            position={showInfoWindow}
                         >
                             <div>
-                                <h3>hello</h3>
+                                <h3>{showInfoWindow.title}</h3>
+                                <img src={showInfoWindow.image} />
                             </div>
                         </InfoWindow>
                     )}

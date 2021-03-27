@@ -1,10 +1,5 @@
 const express = require("express");
 const app = express();
-
-// socket.io setup
-const server = require("http").Server(app);
-const io = require("socket.io")(server);
-
 const compression = require("compression");
 const path = require("path");
 const cookieSession = require("cookie-session");
@@ -49,10 +44,6 @@ const cookieSessionMiddleware = cookieSession({
 });
 
 app.use(cookieSessionMiddleware);
-
-io.use((socket, next) => {
-    cookieSessionMiddleware(socket.request, socket.request.res, next);
-});
 
 app.use(express.json());
 
@@ -312,6 +303,12 @@ app.get("/api/friends-of-friend/:profileId", function (req, res) {
     });
 });
 
+app.get("/api/googlemap", function (req, res) {
+    db.getMarkersFromFriends(req.session.userId).then((result) => {
+        res.json(result.rows);
+    });
+});
+
 app.get("*", function (req, res) {
     if (!req.session.userId) {
         res.redirect("/welcome");
@@ -320,39 +317,6 @@ app.get("*", function (req, res) {
     }
 });
 
-server.listen(process.env.PORT || 3001, function () {
+app.listen(process.env.PORT || 3001, function () {
     console.log("I'm listening.");
-});
-
-io.on("connection", (socket) => {
-    console.log(`socket with id ${socket.id} just connected`);
-
-    if (!socket.request.session.userId) {
-        return socket.disconnect(true);
-    }
-
-    db.getRecentMessages().then((result) => {
-        socket.emit("chatMessages", result.rows.reverse());
-    });
-
-    socket.on("chatMessage", (message) => {
-        db.addNewMessage(message, socket.request.session.userId).then(
-            (result) => {
-                const { user_id, message_text, id } = result.rows[0];
-                db.getUserData(user_id).then((result) => {
-                    const { first, last, image } = result.rows[0];
-
-                    const messageInfo = {
-                        first,
-                        last,
-                        image,
-                        message_text,
-                        id,
-                    };
-
-                    io.emit("chatMessage", [messageInfo]);
-                });
-            }
-        );
-    });
 });

@@ -17,10 +17,7 @@ export default class App extends Component {
         super(props);
 
         this.state = {
-            markerArr: [
-                { lat: 2100, lng: 2200 },
-                { lat: 1500, lng: 1800 },
-            ],
+            markerArr: [],
             first: "",
             last: "",
             email: "",
@@ -46,6 +43,17 @@ export default class App extends Component {
                     error: true,
                 });
             });
+        axios
+            .get("/api/googlemap")
+            .then((res) => {
+                console.log("google maps API result from server");
+                this.setState({ markerArr: res.data });
+            })
+            .catch(() => {
+                this.setState({
+                    error: true,
+                });
+            });
     }
 
     toggleModal() {
@@ -55,17 +63,6 @@ export default class App extends Component {
 
     updateUser(user) {
         this.setState(user);
-    }
-
-    createArr() {
-        this.setState({
-            markerArr: [
-                { lat: 2100, lng: 2200 },
-                { lat: 1500, lng: 1800 },
-            ],
-        });
-        console.log("abisdabsdbiajsfsdjifgisdgbisdfbisd");
-        console.log(this.state.markerArr);
     }
 
     render() {

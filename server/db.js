@@ -101,29 +101,6 @@ module.exports.getFriendsAndWannabes = (userId) => {
     );
 };
 
-module.exports.getRecentMessages = () => {
-    return db.query(
-        `SELECT
-        users.first,
-        users.last,
-        users.image, 
-        chat_messages.message_text,
-        chat_messages.id
-        FROM chat_messages 
-        JOIN users
-        ON chat_messages.user_id = users.id
-        ORDER BY chat_messages.id DESC
-        LIMIT 10`
-    );
-};
-
-module.exports.addNewMessage = (message_text, user_id) => {
-    return db.query(
-        "INSERT INTO chat_messages (message_text, user_id) VALUES ($1, $2) RETURNING *",
-        [message_text, user_id]
-    );
-};
-
 module.exports.getFriendsById = (id) => {
     return db.query(
         `SELECT users.id, users.first, users.last, users.image 
@@ -135,6 +112,23 @@ module.exports.getFriendsById = (id) => {
         OR (friendships.accepted = true
             AND friendships.sender_id = $1
             AND friendships.recipient_id = users.id)`,
+        [id]
+    );
+};
+
+module.exports.getMarkersFromFriends = (id) => {
+    return db.query(
+        `SELECT users.id, markers.lat, markers.lng, markers.title, markers.image
+    FROM friendships 
+    JOIN users 
+    ON (friendships.accepted = true
+        AND friendships.recipient_id = $1
+        AND friendships.sender_id = users.id)
+    OR (friendships.accepted = true
+        AND friendships.sender_id = $1
+        AND friendships.recipient_id = users.id)
+    JOIN markers
+    ON markers.user_id = users.id`,
         [id]
     );
 };
