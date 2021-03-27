@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
+import "./resetPassword.css";
 
 import axios from "./axios";
 
@@ -61,11 +62,10 @@ export default class ResetPassword extends Component {
 
     render() {
         return (
-            <div className="resetPassword">
-                <h2>Reset Password</h2>
+            <>
                 {this.state.error && <p>OH OH something went wrong</p>}
                 {this.state.step === 1 && (
-                    <div>
+                    <div className="resetPassword">
                         <h3>Insert your e-mail</h3>
                         <form
                             className="sendEmail"
@@ -113,7 +113,7 @@ export default class ResetPassword extends Component {
                         </p>
                     </div>
                 )}
-            </div>
+            </>
         );
     }
 }

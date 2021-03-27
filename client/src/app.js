@@ -76,21 +76,24 @@ export default class App extends Component {
                         </div>
                         <div className="navigation">
                             <Link to="/friends">
-                                <img src="/images/friends.png" />
-                            </Link>
-                            <Link to="/findPeople">
-                                <img src="/images/search.png" />
+                                <img src="/images/Friends.png" />
                             </Link>
                             <Link to="/">
-                                <img src="/images/homepage.png" />
+                                <img src="/images/Home.png" />
                             </Link>
-                            <ProfilePic
+                            <Link to="/">
+                                <img
+                                    className="avatar"
+                                    src={this.state.image}
+                                />
+                            </Link>
+                            {/* <ProfilePic
                                 className="avatar"
                                 first={this.state.first}
                                 image={this.state.image}
                                 last={this.state.last}
                                 toggleModal={this.toggleModal}
-                            />
+                            /> */}
                         </div>
                     </div>
                     <>

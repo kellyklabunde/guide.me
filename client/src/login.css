@@ -18,7 +18,8 @@
 
 .login p {
     text-align: center;
-    margin-top: 10px;
+    font-family: "Cairo", sans-serif;
+    font-size: 17px;
 }
 
 .login input {
