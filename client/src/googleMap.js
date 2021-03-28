@@ -8,6 +8,8 @@ import {
 } from "@react-google-maps/api";
 import secrets from "/client/secrets.json";
 
+import axios from "./axios";
+
 const center = {
     lat: 37.772,
     lng: 122.214,
@@ -15,6 +17,10 @@ const center = {
 
 function MyComponent(markerArr) {
     const [showInfoWindow, setShowInfoWindow] = useState("");
+    const [newMarkerWindow, setNewMarkerWindow] = useState("");
+    const [title, setTitle] = useState("");
+    const [image, setImage] = useState("");
+    const [comments, setComments] = useState([]);
 
     console.log("Google Maps Component did mount");
     console.log(markerArr.markerArr);
@@ -26,10 +32,6 @@ function MyComponent(markerArr) {
 
     const onLoadMarker = (marker) => {
         console.log("marker: ", marker);
-    };
-
-    const onLoadInfoWindow = (infoBox) => {
-        console.log("infobox: ", infoBox);
     };
 
     const { isLoaded } = useJsApiLoader({
@@ -52,22 +54,65 @@ function MyComponent(markerArr) {
     function handleClickMarker(marker) {
         console.log("handle click marker");
         setShowInfoWindow(marker);
+        const lat = marker.lat;
+        const lng = marker.lng;
+
+        axios
+            .get("/api/googlemap/markerAll", { params: { lat, lng } })
+            .then((res) => {
+                const markerId = parseInt(res.data[0].id);
+
+                axios
+                    .get("/api/googlemap/comments", { params: { markerId } })
+                    .then((res) => {
+                        console.log("KKKKKKKKKKKKK");
+                        console.log(res.data);
+                        setComments(res.data);
+                    });
+            });
     }
 
     function handleClickMap(event) {
         console.log("handle click map");
-        console.log(event);
+        const coordinates = {
+            lat: event.latLng.lat(),
+            lng: event.latLng.lng(),
+        };
+        console.log(coordinates);
+        setNewMarkerWindow(coordinates);
+    }
+
+    function handleChangeImg(e) {
+        setImage(e.target.files[0]);
+        // console.log(e.target.files[0]);
+    }
+
+    function handleChangeTxt(e) {
+        // console.log(e.target.value);
+        setTitle(e.target.value);
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        const fd = new FormData();
+
+        fd.append("image", image);
+        const lat = newMarkerWindow.lat;
+        const lng = newMarkerWindow.lng;
+
+        axios
+            .post("/api/googlemap", fd, { params: { title, lat, lng } })
+            .then((res) => {
+                console.log(res);
+            });
+
+        setNewMarkerWindow(null);
     }
 
     return isLoaded ? (
         <>
-            {/* {markerArr.markerArr.map((marker) => (
-                <li key={marker.lat}>
-                    {marker.lat}
-                    {marker.lng}
-                </li>
-            ))} */}
-
+            <h1>frufrufru{[comments]}</h1>
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
@@ -99,11 +144,41 @@ function MyComponent(markerArr) {
                             <div>
                                 <h3>{showInfoWindow.title}</h3>
                                 <img src={showInfoWindow.image} />
+                                {comments.map((comment) => {
+                                    <li key={comment}>
+                                        <p>{comment}</p>
+                                    </li>;
+                                })}
+                            </div>
+                        </InfoWindow>
+                    )}
+                    {newMarkerWindow && (
+                        <InfoWindow
+                            onCloseClick={() => {
+                                setNewMarkerWindow(null);
+                            }}
+                            position={newMarkerWindow}
+                        >
+                            <div>
+                                <form onSubmit={handleSubmit}>
+                                    <input
+                                        type="text"
+                                        name="title"
+                                        placeholder="Title"
+                                        onChange={handleChangeTxt}
+                                    />
+                                    <input
+                                        type="file"
+                                        onChange={handleChangeImg}
+                                    />
+                                    <button type="submit">
+                                        Upload New Image
+                                    </button>
+                                </form>
                             </div>
                         </InfoWindow>
                     )}
                 </>
-                {/* Child components, such as markers, info windows, etc. */}
             </GoogleMap>
         </>
     ) : (

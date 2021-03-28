@@ -309,6 +309,42 @@ app.get("/api/googlemap", function (req, res) {
     });
 });
 
+app.post("/api/googlemap", uploader.single("image"), s3.upload, (req, res) => {
+    console.log("post route google map");
+    const url = config.s3Url + req.file.filename;
+    db.addNewMarker(
+        req.session.userId,
+        req.query.lat,
+        req.query.lng,
+        req.query.title,
+        url
+    )
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((e) => {
+            console.log(e);
+
+            res.sendStatus(500);
+        });
+});
+
+app.get("/api/googlemap/markerAll", function (req, res) {
+    const lat = parseFloat(req.query.lat);
+    const lng = parseFloat(req.query.lng);
+    db.getMarkerId(lat, lng).then((result) => {
+        res.json(result.rows);
+    });
+});
+
+app.get("/api/googlemap/comments", function (req, res) {
+    const markerId = parseInt(req.query.markerId);
+    console.log(markerId);
+    db.getCommentsByMarkerId(markerId).then((result) => {
+        res.json(result.rows);
+    });
+});
+
 app.get("*", function (req, res) {
     if (!req.session.userId) {
         res.redirect("/welcome");

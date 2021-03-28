@@ -132,3 +132,21 @@ module.exports.getMarkersFromFriends = (id) => {
         [id]
     );
 };
+
+module.exports.addNewMarker = (user_id, lat, lng, title, image) => {
+    return db.query(
+        `INSERT INTO markers (user_id, lat, lng, title, image) VALUES ($1, $2, $3, $4, $5)`,
+        [user_id, lat, lng, title, image]
+    );
+};
+
+module.exports.getMarkerId = (lat, lng) => {
+    return db.query(`SELECT * FROM markers WHERE (lat = $1 AND lng = $2)`, [
+        lat,
+        lng,
+    ]);
+};
+
+module.exports.getCommentsByMarkerId = (markerId) => {
+    return db.query(`SELECT * FROM comments WHERE marker_id = $1`, [markerId]);
+};
