@@ -109,10 +109,11 @@ function MyComponent(markerArr) {
 
         setNewMarkerWindow(null);
     }
+    console.log("comments");
+    console.log(comments);
 
     return isLoaded ? (
         <>
-            <h1>frufrufru{[comments]}</h1>
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
@@ -144,11 +145,11 @@ function MyComponent(markerArr) {
                             <div>
                                 <h3>{showInfoWindow.title}</h3>
                                 <img src={showInfoWindow.image} />
-                                {comments.map((comment) => {
-                                    <li key={comment}>
-                                        <p>{comment}</p>
-                                    </li>;
-                                })}
+                                {comments.map((text) => (
+                                    <li key={text.id}>
+                                        <p>{text.comment}</p>
+                                    </li>
+                                ))}
                             </div>
                         </InfoWindow>
                     )}
