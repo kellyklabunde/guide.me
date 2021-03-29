@@ -31,6 +31,7 @@ main {
     border-bottom: 2px solid #535e6b;
     height: 70px;
     align-items: center;
+    padding-right: 10px;
 }
 
 .menu-container img {

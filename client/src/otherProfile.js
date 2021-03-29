@@ -1,6 +1,7 @@
 import { Component } from "react";
 import Button from "./button";
 import FriendsOfFriend from "./friendsOfFriend";
+import "./otherProfile.css";
 
 import axios from "./axios";
 
@@ -40,17 +41,20 @@ export default class OtherProfile extends Component {
         return (
             <div className="otherProfile">
                 <img src={this.state.image || "/images/profile.png"} />
-                <div className="otherProfileContainer">
-                    <div className="otherProfileInfo">
-                        <p>
-                            {" "}
-                            {this.state.first} {this.state.last}{" "}
-                        </p>
-                        <p> {this.state.bio} </p>
-                        <Button id={this.props} />
-                    </div>
-                    <FriendsOfFriend props={this.props} />
+                <div className="otherProfileInfo">
+                    <h2>
+                        {" "}
+                        {this.state.first} {this.state.last}{" "}
+                    </h2>
+                    <p> {this.state.bio} </p>
                 </div>
+                <div className="buttonOtherProfile">
+                    <Button id={this.props} />
+                </div>
+                <div className="friendsOf">
+                    <h3>Friends of {this.state.first}</h3>
+                </div>
+                <FriendsOfFriend props={this.props} />
             </div>
         );
     }

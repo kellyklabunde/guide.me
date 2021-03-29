@@ -78,61 +78,6 @@
 
 /* OTHER PROFILE */
 
-.otherProfile img {
-    display: flex;
-    width: 250px;
-    height: 250px;
-    cursor: pointer;
-    border-radius: 50%;
-    flex-shrink: 0;
-    border: 1px solid black;
-    object-fit: cover;
-    margin-right: 10px;
-}
-
-.otherProfileContainer {
-    display: flex;
-    flex-direction: column;
-}
-
-.otherProfile {
-    padding: 60px;
-    display: flex;
-}
-
-.otherProfileInfo {
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-    margin-left: 20px;
-    border: 1px solid black;
-    border-radius: 15px;
-    justify-content: center;
-    margin-bottom: 30px;
-}
-
-.friendsOfFriend {
-    display: flex;
-    border: 1px solid black;
-    border-radius: 15px;
-    justify-content: center;
-    padding: 30px;
-    margin-left: 20px;
-}
-
-.friendsOfFriend a {
-    display: flex;
-}
-
-.friendsOfFriend img {
-    width: 80px;
-    height: 80px;
-    cursor: pointer;
-    border-radius: 50%;
-    flex-shrink: 0;
-    object-fit: cover;
-}
-
 /* FIND PEOPLE */
 
 /* FRIENDS */

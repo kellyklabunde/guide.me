@@ -72,7 +72,7 @@ export default class App extends Component {
                     <div className="menu-container">
                         <div className="guide-me">
                             <h1>guide.me</h1>
-                            <img src="./images/Logo.png" />
+                            <img src="/images/Logo.png" />
                         </div>
                         <div className="navigation">
                             <Link to="/friends">

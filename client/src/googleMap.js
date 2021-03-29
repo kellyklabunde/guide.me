@@ -134,7 +134,7 @@ function MyComponent(markerArr) {
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
-                zoom={10}
+                zoom={20}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
                 onClick={handleClickMap}
