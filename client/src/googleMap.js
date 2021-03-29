@@ -21,6 +21,8 @@ function MyComponent(markerArr) {
     const [title, setTitle] = useState("");
     const [image, setImage] = useState("");
     const [comments, setComments] = useState([]);
+    const [newComment, setNewComment] = useState("");
+    const [clickedMarkerId, setclickedMarkerId] = useState("");
 
     console.log("Google Maps Component did mount");
     console.log(markerArr.markerArr);
@@ -53,6 +55,7 @@ function MyComponent(markerArr) {
 
     function handleClickMarker(marker) {
         console.log("handle click marker");
+        console.log(marker);
         setShowInfoWindow(marker);
         const lat = marker.lat;
         const lng = marker.lng;
@@ -62,11 +65,11 @@ function MyComponent(markerArr) {
             .then((res) => {
                 const markerId = parseInt(res.data[0].id);
 
+                setclickedMarkerId(markerId);
+
                 axios
                     .get("/api/googlemap/comments", { params: { markerId } })
                     .then((res) => {
-                        console.log("KKKKKKKKKKKKK");
-                        console.log(res.data);
                         setComments(res.data);
                     });
             });
@@ -92,6 +95,10 @@ function MyComponent(markerArr) {
         setTitle(e.target.value);
     }
 
+    function handleChangeComment(e) {
+        setNewComment(e.target.value);
+    }
+
     function handleSubmit(e) {
         e.preventDefault();
 
@@ -109,8 +116,18 @@ function MyComponent(markerArr) {
 
         setNewMarkerWindow(null);
     }
-    console.log("comments");
-    console.log(comments);
+
+    function handleCommentSubmit(event) {
+        console.log(event);
+
+        axios
+            .post("/api/googlemap/newcomment", null, {
+                params: { newComment, clickedMarkerId },
+            })
+            .then((res) => {
+                console.log(res);
+            });
+    }
 
     return isLoaded ? (
         <>
@@ -144,12 +161,26 @@ function MyComponent(markerArr) {
                         >
                             <div>
                                 <h3>{showInfoWindow.title}</h3>
+                                <img src={showInfoWindow.marker_image} />
                                 <img src={showInfoWindow.image} />
+                                <p>
+                                    {showInfoWindow.first} {showInfoWindow.last}
+                                </p>
+                                <p>{showInfoWindow.created_at}</p>
                                 {comments.map((text) => (
                                     <li key={text.id}>
                                         <p>{text.comment}</p>
                                     </li>
                                 ))}
+                                <form onSubmit={handleCommentSubmit}>
+                                    <input
+                                        type="text"
+                                        name="comment"
+                                        placeholder="Insert your comment here..."
+                                        onChange={handleChangeComment}
+                                    />
+                                    <button type="submit">Submit</button>
+                                </form>
                             </div>
                         </InfoWindow>
                     )}
@@ -172,9 +203,7 @@ function MyComponent(markerArr) {
                                         type="file"
                                         onChange={handleChangeImg}
                                     />
-                                    <button type="submit">
-                                        Upload New Image
-                                    </button>
+                                    <button type="submit">Add new Pin</button>
                                 </form>
                             </div>
                         </InfoWindow>

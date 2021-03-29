@@ -118,7 +118,7 @@ module.exports.getFriendsById = (id) => {
 
 module.exports.getMarkersFromFriends = (id) => {
     return db.query(
-        `SELECT users.id, markers.lat, markers.lng, markers.title, markers.image
+        `SELECT users.id, users.first, users.last, users.image, markers.lat, markers.lng, markers.title, markers.marker_image, markers.created_at
     FROM friendships 
     JOIN users 
     ON (friendships.accepted = true
@@ -133,10 +133,10 @@ module.exports.getMarkersFromFriends = (id) => {
     );
 };
 
-module.exports.addNewMarker = (user_id, lat, lng, title, image) => {
+module.exports.addNewMarker = (user_id, lat, lng, title, marker_image) => {
     return db.query(
-        `INSERT INTO markers (user_id, lat, lng, title, image) VALUES ($1, $2, $3, $4, $5)`,
-        [user_id, lat, lng, title, image]
+        `INSERT INTO markers (user_id, lat, lng, title, marker_image) VALUES ($1, $2, $3, $4, $5)`,
+        [user_id, lat, lng, title, marker_image]
     );
 };
 
@@ -149,4 +149,11 @@ module.exports.getMarkerId = (lat, lng) => {
 
 module.exports.getCommentsByMarkerId = (markerId) => {
     return db.query(`SELECT * FROM comments WHERE marker_id = $1`, [markerId]);
+};
+
+module.exports.addNewComment = (user_id, comment, marker_id) => {
+    return db.query(
+        `INSERT INTO comments (user_id, comment, marker_id) VALUES ($1, $2, $3)`,
+        [user_id, comment, marker_id]
+    );
 };

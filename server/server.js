@@ -332,6 +332,7 @@ app.post("/api/googlemap", uploader.single("image"), s3.upload, (req, res) => {
 app.get("/api/googlemap/markerAll", function (req, res) {
     const lat = parseFloat(req.query.lat);
     const lng = parseFloat(req.query.lng);
+
     db.getMarkerId(lat, lng).then((result) => {
         res.json(result.rows);
     });
@@ -343,6 +344,24 @@ app.get("/api/googlemap/comments", function (req, res) {
     db.getCommentsByMarkerId(markerId).then((result) => {
         res.json(result.rows);
     });
+});
+
+app.post("/api/googlemap/newcomment", (req, res) => {
+    console.log("post route new comment");
+    console.log(req.query);
+    db.addNewComment(
+        req.session.userId,
+        req.query.newComment,
+        req.query.clickedMarkerId
+    )
+        .then((result) => {
+            res.json(result.rows);
+        })
+        .catch((e) => {
+            console.log(e);
+
+            res.sendStatus(500);
+        });
 });
 
 app.get("*", function (req, res) {
