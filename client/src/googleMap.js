@@ -7,13 +7,9 @@ import {
     InfoWindow,
 } from "@react-google-maps/api";
 import secrets from "/client/secrets.json";
+import googleMapsStyling from "../googleMapsStyling";
 
 import axios from "./axios";
-
-const center = {
-    lat: 37.772,
-    lng: 122.214,
-};
 
 function MyComponent(markerArr) {
     const [showInfoWindow, setShowInfoWindow] = useState("");
@@ -26,6 +22,11 @@ function MyComponent(markerArr) {
 
     console.log("Google Maps Component did mount");
     console.log(markerArr.markerArr);
+
+    const center = {
+        lat: 48.779045,
+        lng: 9.189562,
+    };
 
     const containerStyle = {
         width: "800px",
@@ -134,10 +135,11 @@ function MyComponent(markerArr) {
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
-                zoom={20}
+                zoom={100}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
-                onClick={handleClickMap}
+                options={{ styles: googleMapsStyling }}
+                onDblClick={handleClickMap}
             >
                 <>
                     {markerArr.markerArr.map((marker) => (

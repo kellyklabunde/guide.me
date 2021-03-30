@@ -364,6 +364,11 @@ app.post("/api/googlemap/newcomment", (req, res) => {
         });
 });
 
+app.get("/api/logout", (req, res) => {
+    req.session.userId = null;
+    res.redirect("/welcome");
+});
+
 app.get("*", function (req, res) {
     if (!req.session.userId) {
         res.redirect("/welcome");

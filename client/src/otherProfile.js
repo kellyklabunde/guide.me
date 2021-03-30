@@ -1,6 +1,8 @@
+import { HashRouter, Route } from "react-router-dom";
 import { Component } from "react";
 import Button from "./button";
 import FriendsOfFriend from "./friendsOfFriend";
+import GoogleMap from "./googleMap";
 import "./otherProfile.css";
 
 import axios from "./axios";
@@ -14,6 +16,7 @@ export default class OtherProfile extends Component {
             last: "",
             image: "",
             bio: "",
+            markerArr: [],
         };
     }
 
@@ -27,7 +30,7 @@ export default class OtherProfile extends Component {
             .get(`/api/user/${this.props.match.params.id}`)
             .then((res) => {
                 if (res.data.ownProfile) {
-                    location.replace("/");
+                    location.replace("/profile");
                 } else {
                     this.setState(res.data);
                 }
@@ -39,22 +42,27 @@ export default class OtherProfile extends Component {
 
     render() {
         return (
-            <div className="otherProfile">
-                <img src={this.state.image || "/images/profile.png"} />
-                <div className="otherProfileInfo">
-                    <h2>
-                        {" "}
-                        {this.state.first} {this.state.last}{" "}
-                    </h2>
-                    <p> {this.state.bio} </p>
+            <div className="otherprofile-container">
+                <div className="otherProfile">
+                    <img src={this.state.image || "/images/profile.png"} />
+                    <div className="otherProfileInfo">
+                        <h2>
+                            {" "}
+                            {this.state.first} {this.state.last}{" "}
+                        </h2>
+                        <p> {this.state.bio} </p>
+                    </div>
+                    <div className="buttonOtherProfile">
+                        <Button id={this.props} />
+                    </div>
+                    <div className="friendsOf">
+                        <h3>Friends of {this.state.first}</h3>
+                    </div>
+                    <FriendsOfFriend props={this.props} />
                 </div>
-                <div className="buttonOtherProfile">
-                    <Button id={this.props} />
+                <div className="otherProfileMap">
+                    <GoogleMap markerArr={[]} />
                 </div>
-                <div className="friendsOf">
-                    <h3>Friends of {this.state.first}</h3>
-                </div>
-                <FriendsOfFriend props={this.props} />
             </div>
         );
     }

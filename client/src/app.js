@@ -11,6 +11,7 @@ import FindPeople from "./findPeople";
 import Friends from "./friends";
 import GoogleMap from "./googleMap";
 import "./app.css";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 export default class App extends Component {
     constructor(props) {
@@ -28,6 +29,7 @@ export default class App extends Component {
 
         this.toggleModal = this.toggleModal.bind(this);
         this.updateUser = this.updateUser.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
     componentDidMount() {
@@ -65,6 +67,15 @@ export default class App extends Component {
         this.setState(user);
     }
 
+    handleLogout(e) {
+        console.log("handle logout");
+        console.log(e);
+        axios.get("/api/logout").then((res) => {
+            console.log("back to welcome");
+            location.replace("/welcome");
+        });
+    }
+
     render() {
         return (
             <>
@@ -81,12 +92,20 @@ export default class App extends Component {
                             <Link to="/">
                                 <img src="/images/Home.png" />
                             </Link>
-                            <Link to="/">
+                            <Link to="/profile">
                                 <img
                                     className="avatar"
-                                    src={this.state.image}
+                                    src={
+                                        this.state.image ||
+                                        "/images/profile.png"
+                                    }
                                 />
                             </Link>
+                            <img
+                                src="/images/Logout.png"
+                                onClick={this.handleLogout}
+                            />
+                            {/* <img src="/images/Logout.png" /> */}
                             {/* <ProfilePic
                                 className="avatar"
                                 first={this.state.first}
@@ -105,9 +124,19 @@ export default class App extends Component {
                             )}
                         />
                         <Route path="/profile" component={Profile} />
-                        <Route path="/user/:id" component={OtherProfile} />
+                        <Route
+                            path="/user/:id"
+                            render={(props) => (
+                                <OtherProfile
+                                    key={props.match.url}
+                                    match={props.match}
+                                    history={props.history}
+                                />
+                            )}
+                        />
                         <Route path="/findPeople" component={FindPeople} />
                         <Route path="/friends" component={Friends} />
+                        <Route path="/profile" component={Profile} />
                     </>
                 </BrowserRouter>
                 {this.state.uploaderVisible && (

@@ -85,15 +85,9 @@ export default function Friends() {
                     ))}
                 </>
             </div>
-            <BrowserRouter>
-                <div className="find-friends">
-                    <Route
-                        exact
-                        path="/friends"
-                        render={() => <FindPeople />}
-                    />
-                </div>
-            </BrowserRouter>
+            <div className="find-friends">
+                <FindPeople />
+            </div>
         </div>
     );
 }

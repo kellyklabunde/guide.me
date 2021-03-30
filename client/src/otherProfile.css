@@ -1,3 +1,7 @@
+.otherprofile-container {
+    display: flex;
+}
+
 .otherProfile {
     display: flex;
     flex-direction: column;
@@ -65,4 +69,9 @@
 
 .friendsOfFriend ul {
     padding: 0;
+}
+
+.otherProfileMap {
+    margin-top: 10px;
+    margin-left: 100px;
 }
