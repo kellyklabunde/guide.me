@@ -154,7 +154,7 @@ function MyComponent(markerArr) {
                 key="googleMap"
                 mapContainerStyle={containerStyle}
                 center={center}
-                zoom={5}
+                zoom={3}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
                 options={{ styles: googleMapsStyling }}
@@ -170,6 +170,7 @@ function MyComponent(markerArr) {
                                 onLoad={onLoadMarker}
                                 clickable={true}
                                 position={marker}
+                                icon={"./images/Marker.png"}
                             />
                         </li>
                     ))}
@@ -199,17 +200,21 @@ function MyComponent(markerArr) {
                                         <p>at {showInfoWindow.created_at}</p>
                                     </div>
                                 </div>
-                                {comments.map((text) => (
-                                    <li key={text.id}>
-                                        <p>Comments:</p>
-                                        <img src={text.image} />
-                                        <p>
-                                            {text.first} {text.last}
-                                        </p>
-                                        <p>{text.created_at}</p>
-                                        <p>{text.comment}</p>
-                                    </li>
-                                ))}
+                                <div className="comments-session">
+                                    <p>Comments:</p>
+                                    <div className="comment-info">
+                                        {comments.map((text) => (
+                                            <ul key={text.id}>
+                                                <img src={text.image} />
+                                                <p>
+                                                    {text.first} {text.last}
+                                                </p>
+                                                <p>{text.created_at}</p>
+                                                <p>{text.comment}</p>
+                                            </ul>
+                                        ))}
+                                    </div>
+                                </div>
                                 <form onSubmit={handleCommentSubmit}>
                                     <input
                                         type="text"
@@ -247,8 +252,12 @@ function MyComponent(markerArr) {
                                         onChange={handleChangeCategory}
                                     >
                                         <option>Restaurant</option>
-                                        <option>To-do</option>
-                                        <option>To-do</option>
+                                        <option>Accomodation</option>
+                                        <option>Shopping</option>
+                                        <option>Museum</option>
+                                        <option>Hiking</option>
+                                        <option>Park</option>
+                                        <option>Beach</option>
                                     </select>
                                     <button type="submit">Add new Pin</button>
                                 </form>

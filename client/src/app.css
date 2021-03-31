@@ -71,3 +71,11 @@ footer {
     margin-bottom: 3px;
     color: #33b9cb;
 }
+
+.main {
+    display: flex;
+}
+
+.newsFeed {
+    background-color: blue;
+}

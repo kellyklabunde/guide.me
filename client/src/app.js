@@ -94,7 +94,8 @@ export default class App extends Component {
                             />
                         </div>
                     </div>
-                    <>
+                    <div className="main">
+                        <div className="newsFeed">hello</div>
                         <Route
                             exact
                             path="/"
@@ -102,6 +103,8 @@ export default class App extends Component {
                                 <GoogleMap markerArr={this.state.markerArr} />
                             )}
                         />
+                    </div>
+                    <>
                         <Route
                             path="/profile"
                             render={(props) => (

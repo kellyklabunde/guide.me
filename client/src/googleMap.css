@@ -41,6 +41,29 @@
     margin-right: 5px;
 }
 
+/* COMMENTS */
+
+.comments-session {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-info ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-info img {
+    display: flex;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+    margin-bottom: 10px;
+    margin-right: 5px;
+}
+
 /* ADD NEW PIN  */
 
 .new-pin {
