@@ -27,6 +27,13 @@ export default class OtherProfile extends Component {
         );
 
         axios
+            .get(`/api/otherprofile/googlemap/${this.props.match.params.id}`)
+            .then((res) => {
+                console.log("google maps other profile API result from server");
+                this.setState({ markerArr: res.data });
+            });
+
+        axios
             .get(`/api/user/${this.props.match.params.id}`)
             .then((res) => {
                 if (res.data.ownProfile) {
@@ -61,7 +68,7 @@ export default class OtherProfile extends Component {
                     <FriendsOfFriend props={this.props} />
                 </div>
                 <div className="otherProfileMap">
-                    <GoogleMap markerArr={[]} />
+                    <GoogleMap markerArr={this.state.markerArr} />
                 </div>
             </div>
         );

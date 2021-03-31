@@ -39,6 +39,7 @@ CREATE TABLE markers (
     lng FLOAT NOT NULL,
     title VARCHAR NOT NULL CHECK (title != ''),
     marker_image VARCHAR,
+    category VARCHAR,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

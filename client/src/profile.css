@@ -1,0 +1,111 @@
+.profile-page {
+    display: flex;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.profile .avatar {
+    display: flex;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1px solid black;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.profileInfo {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    width: 250px;
+    font-family: "Cairo", sans-serif;
+}
+
+.profileInfo h2 {
+    margin-bottom: 3px;
+    font-size: 25px;
+    font-weight: bolder;
+    color: #20252b;
+    font-family: "Cairo", sans-serif;
+}
+
+/* BIO EDITOR */
+
+.bioEditor {
+    display: flex;
+}
+
+.bioEditor form {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonEditBio {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+/* UPLOADER */
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    height: 250px;
+    width: 500px;
+    position: absolute;
+    border: 1px solid black;
+    text-align: center;
+    transform: translate(-50%, 50%);
+    align-items: center;
+    left: 50%;
+    z-index: 1;
+}
+
+.modal p {
+    font-size: 30px;
+    color: #20252b;
+    font-family: "Cairo", sans-serif;
+}
+
+.modal h3 {
+    font-size: 15px;
+    color: #20252b;
+    font-family: "Cairo", sans-serif;
+    margin-bottom: 10px;
+}
+
+.modal form {
+    margin-top: 10px;
+}
+
+.buttonUploadImg {
+    margin-top: 20px;
+}
+
+.close {
+    align-self: flex-end;
+    margin-right: 2%;
+    margin-top: 2%;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/* GOOGLE MAP */
+
+.profileMap {
+    margin-top: 10px;
+    margin-left: 100px;
+}

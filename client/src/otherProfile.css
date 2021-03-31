@@ -36,7 +36,10 @@
     font-size: 25px;
     font-weight: bolder;
     color: #20252b;
+    font-family: "Cairo", sans-serif;
 }
+
+/* FRIENDS OF FRIEND */
 
 .friendsOfFriend {
     display: flex;
@@ -70,6 +73,8 @@
 .friendsOfFriend ul {
     padding: 0;
 }
+
+/* GOOGLE MAP */
 
 .otherProfileMap {
     margin-top: 10px;

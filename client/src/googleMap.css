@@ -1,0 +1,61 @@
+.googleMap {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+/* INFO WINDOW - PIN AND COMMENTS */
+
+.infoWindow {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    max-height: 700px;
+}
+
+.infoWindow h3 {
+    font-size: 20px;
+    font-weight: bolder;
+    color: #20252b;
+    font-family: "Cairo", sans-serif;
+}
+
+.infoWindow-userinfo {
+    display: flex;
+    margin-top: 10px;
+}
+
+.marker-image {
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: contain;
+}
+
+.user-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1px solid black;
+    object-fit: cover;
+    margin-bottom: 10px;
+    margin-right: 5px;
+}
+
+/* ADD NEW PIN  */
+
+.new-pin {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-pin input {
+    margin-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.new-pin p {
+    font-size: 25px;
+    font-weight: bolder;
+    color: #20252b;
+    font-family: "Cairo", sans-serif;
+}

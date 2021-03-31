@@ -309,6 +309,18 @@ app.get("/api/googlemap", function (req, res) {
     });
 });
 
+app.get("/api/otherprofile/googlemap/:id", function (req, res) {
+    db.getMarkersFromOtherProfile(req.params.id).then((result) => {
+        res.json(result.rows);
+    });
+});
+
+app.get("/api/ownprofile/googlemap", function (req, res) {
+    db.getMarkersFromOtherProfile(req.session.userId).then((result) => {
+        res.json(result.rows);
+    });
+});
+
 app.post("/api/googlemap", uploader.single("image"), s3.upload, (req, res) => {
     console.log("post route google map");
     const url = config.s3Url + req.file.filename;
@@ -340,7 +352,6 @@ app.get("/api/googlemap/markerAll", function (req, res) {
 
 app.get("/api/googlemap/comments", function (req, res) {
     const markerId = parseInt(req.query.markerId);
-    console.log(markerId);
     db.getCommentsByMarkerId(markerId).then((result) => {
         res.json(result.rows);
     });

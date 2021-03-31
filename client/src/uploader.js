@@ -1,4 +1,5 @@
 import { Component } from "react";
+import "./profile.css";
 
 import axios from "./axios";
 
@@ -28,6 +29,7 @@ export default class Uploader extends Component {
         axios.post("/api/upload", fd).then((res) => {
             this.props.updateUser(res.data);
             this.props.toggleModal();
+            location.replace("/profile");
         });
     }
 
@@ -37,13 +39,13 @@ export default class Uploader extends Component {
                 <button onClick={this.props.toggleModal} className="close">
                     X
                 </button>
-                <p>
-                    Choose a profile picture
-                    <img src="/images/camera.png" />
-                </p>
+                <p>Choose a profile picture</p>
+                <h3>Max. 2 MB</h3>
                 <form onSubmit={this.handleSubmit}>
                     <input type="file" onChange={this.handleChange}></input>
-                    <button type="submit">Upload New Image</button>
+                    <button className="buttonUploadImg" type="submit">
+                        Upload New Image
+                    </button>
                 </form>
             </div>
         );

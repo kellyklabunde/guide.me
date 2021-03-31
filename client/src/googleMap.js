@@ -8,30 +8,32 @@ import {
 } from "@react-google-maps/api";
 import secrets from "/client/secrets.json";
 import googleMapsStyling from "../googleMapsStyling";
+import "./googleMap.css";
 
 import axios from "./axios";
+
+const center = {
+    lat: 48.779045,
+    lng: 9.189562,
+};
+
+const containerStyle = {
+    width: "800px",
+    height: "500px",
+};
 
 function MyComponent(markerArr) {
     const [showInfoWindow, setShowInfoWindow] = useState("");
     const [newMarkerWindow, setNewMarkerWindow] = useState("");
     const [title, setTitle] = useState("");
     const [image, setImage] = useState("");
+    const [category, setCategory] = useState("");
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
     const [clickedMarkerId, setclickedMarkerId] = useState("");
 
     console.log("Google Maps Component did mount");
     console.log(markerArr.markerArr);
-
-    const center = {
-        lat: 48.779045,
-        lng: 9.189562,
-    };
-
-    const containerStyle = {
-        width: "800px",
-        height: "500px",
-    };
 
     const onLoadMarker = (marker) => {
         console.log("marker: ", marker);
@@ -46,7 +48,7 @@ function MyComponent(markerArr) {
 
     const onLoad = React.useCallback(function callback(map) {
         const bounds = new window.google.maps.LatLngBounds();
-        map.fitBounds(bounds);
+        // map.fitBounds(bounds);
         setMap(map);
     }, []);
 
@@ -71,7 +73,17 @@ function MyComponent(markerArr) {
                 axios
                     .get("/api/googlemap/comments", { params: { markerId } })
                     .then((res) => {
+                        console.log("going to comments route");
+                        console.log(res.data);
                         setComments(res.data);
+                        console.log(res.data[0].user_id);
+                        console.log(typeof res.data.user_id);
+                        axios
+                            .get(`/api/user/${res.data[0].user_id}`)
+                            .then((res) => {
+                                console.log("bbbbbbbbbbbbbbbbbbbbbbbbbb");
+                                console.log(res.data);
+                            });
                     });
             });
     }
@@ -100,6 +112,10 @@ function MyComponent(markerArr) {
         setNewComment(e.target.value);
     }
 
+    function handleChangeCategory(e) {
+        setCategory(e.target.value);
+    }
+
     function handleSubmit(e) {
         e.preventDefault();
 
@@ -110,7 +126,9 @@ function MyComponent(markerArr) {
         const lng = newMarkerWindow.lng;
 
         axios
-            .post("/api/googlemap", fd, { params: { title, lat, lng } })
+            .post("/api/googlemap", fd, {
+                params: { title, lat, lng, category },
+            })
             .then((res) => {
                 console.log(res);
             });
@@ -131,11 +149,12 @@ function MyComponent(markerArr) {
     }
 
     return isLoaded ? (
-        <>
+        <div className="googleMap">
             <GoogleMap
+                key="googleMap"
                 mapContainerStyle={containerStyle}
                 center={center}
-                zoom={100}
+                zoom={5}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
                 options={{ styles: googleMapsStyling }}
@@ -161,16 +180,33 @@ function MyComponent(markerArr) {
                             }}
                             position={showInfoWindow}
                         >
-                            <div>
+                            <div className="infoWindow">
                                 <h3>{showInfoWindow.title}</h3>
-                                <img src={showInfoWindow.marker_image} />
-                                <img src={showInfoWindow.image} />
-                                <p>
-                                    {showInfoWindow.first} {showInfoWindow.last}
-                                </p>
-                                <p>{showInfoWindow.created_at}</p>
+                                <img
+                                    className="marker-image"
+                                    src={showInfoWindow.marker_image}
+                                />
+                                <div className="infoWindow-userinfo">
+                                    <img
+                                        className="user-image"
+                                        src={showInfoWindow.image}
+                                    />
+                                    <div className="userInfo-container">
+                                        <p>
+                                            {showInfoWindow.first}{" "}
+                                            {showInfoWindow.last}
+                                        </p>
+                                        <p>at {showInfoWindow.created_at}</p>
+                                    </div>
+                                </div>
                                 {comments.map((text) => (
                                     <li key={text.id}>
+                                        <p>Comments:</p>
+                                        <img src={text.image} />
+                                        <p>
+                                            {text.first} {text.last}
+                                        </p>
+                                        <p>{text.created_at}</p>
                                         <p>{text.comment}</p>
                                     </li>
                                 ))}
@@ -193,7 +229,8 @@ function MyComponent(markerArr) {
                             }}
                             position={newMarkerWindow}
                         >
-                            <div>
+                            <div className="new-pin">
+                                <p>Create a pin:</p>
                                 <form onSubmit={handleSubmit}>
                                     <input
                                         type="text"
@@ -205,6 +242,14 @@ function MyComponent(markerArr) {
                                         type="file"
                                         onChange={handleChangeImg}
                                     />
+                                    <select
+                                        name="category"
+                                        onChange={handleChangeCategory}
+                                    >
+                                        <option>Restaurant</option>
+                                        <option>To-do</option>
+                                        <option>To-do</option>
+                                    </select>
                                     <button type="submit">Add new Pin</button>
                                 </form>
                             </div>
@@ -212,7 +257,7 @@ function MyComponent(markerArr) {
                     )}
                 </>
             </GoogleMap>
-        </>
+        </div>
     ) : (
         <></>
     );

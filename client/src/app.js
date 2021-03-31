@@ -4,8 +4,6 @@ import { Component } from "react";
 import axios from "./axios";
 
 import Profile from "./profile";
-import ProfilePic from "./profilePic";
-import Uploader from "./uploader";
 import OtherProfile from "./otherProfile";
 import FindPeople from "./findPeople";
 import Friends from "./friends";
@@ -27,8 +25,6 @@ export default class App extends Component {
             uploaderVisible: false,
         };
 
-        this.toggleModal = this.toggleModal.bind(this);
-        this.updateUser = this.updateUser.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
     }
 
@@ -56,15 +52,6 @@ export default class App extends Component {
                     error: true,
                 });
             });
-    }
-
-    toggleModal() {
-        console.log("toggle Uploder Modal");
-        this.setState({ uploaderVisible: !this.state.uploaderVisible });
-    }
-
-    updateUser(user) {
-        this.setState(user);
     }
 
     handleLogout(e) {
@@ -105,14 +92,6 @@ export default class App extends Component {
                                 src="/images/Logout.png"
                                 onClick={this.handleLogout}
                             />
-                            {/* <img src="/images/Logout.png" /> */}
-                            {/* <ProfilePic
-                                className="avatar"
-                                first={this.state.first}
-                                image={this.state.image}
-                                last={this.state.last}
-                                toggleModal={this.toggleModal}
-                            /> */}
                         </div>
                     </div>
                     <>
@@ -123,7 +102,17 @@ export default class App extends Component {
                                 <GoogleMap markerArr={this.state.markerArr} />
                             )}
                         />
-                        <Route path="/profile" component={Profile} />
+                        <Route
+                            path="/profile"
+                            render={(props) => (
+                                <Profile
+                                    first={this.state.first}
+                                    last={this.state.last}
+                                    image={this.state.image}
+                                    bio={this.state.bio}
+                                />
+                            )}
+                        />
                         <Route
                             path="/user/:id"
                             render={(props) => (
@@ -136,15 +125,8 @@ export default class App extends Component {
                         />
                         <Route path="/findPeople" component={FindPeople} />
                         <Route path="/friends" component={Friends} />
-                        <Route path="/profile" component={Profile} />
                     </>
                 </BrowserRouter>
-                {this.state.uploaderVisible && (
-                    <Uploader
-                        toggleModal={this.toggleModal}
-                        updateUser={this.updateUser}
-                    />
-                )}
                 <footer>
                     Kelly Klabunde - full-stack web developer student - 2021
                 </footer>

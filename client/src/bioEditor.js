@@ -1,4 +1,5 @@
 import { Component } from "react";
+import "./profile.css";
 
 import axios from "./axios";
 
@@ -21,10 +22,10 @@ export default class BioEditor extends Component {
         axios
             .post("/api/user/bio", { bio: this.state.draft })
             .then((res) => {
-                console.log("draft");
                 console.log(res.data["bio"]);
                 this.setState({ draft: res.data["bio"], editingMode: false });
                 this.props.updateUser(res.data);
+                location.replace("/profile");
             })
             .catch(() => {
                 this.setState({
@@ -55,14 +56,19 @@ export default class BioEditor extends Component {
                             name="draft"
                             onChange={this.handleChange}
                         ></textarea>
-                        <button type="submit">Save</button>
+                        <button className="buttonEditBio" type="submit">
+                            Save
+                        </button>
                     </form>
                 )}
                 {!this.state.editingMode && (
                     <>
                         <p>{this.props.bio}</p>
 
-                        <button onClick={this.handleClick}>
+                        <button
+                            className="buttonEditBio"
+                            onClick={this.handleClick}
+                        >
                             {this.props.bio ? "Edit" : "Add a bio"}
                         </button>
                     </>

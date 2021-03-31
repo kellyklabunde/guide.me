@@ -133,6 +133,17 @@ module.exports.getMarkersFromFriends = (id) => {
     );
 };
 
+module.exports.getMarkersFromOtherProfile = (id) => {
+    return db.query(
+        `SELECT markers.*, users.first, users.last, users.image
+    FROM markers 
+    JOIN users
+    ON markers.user_id = users.id
+    WHERE user_id = $1`,
+        [id]
+    );
+};
+
 module.exports.addNewMarker = (user_id, lat, lng, title, marker_image) => {
     return db.query(
         `INSERT INTO markers (user_id, lat, lng, title, marker_image) VALUES ($1, $2, $3, $4, $5)`,
@@ -148,7 +159,10 @@ module.exports.getMarkerId = (lat, lng) => {
 };
 
 module.exports.getCommentsByMarkerId = (markerId) => {
-    return db.query(`SELECT * FROM comments WHERE marker_id = $1`, [markerId]);
+    return db.query(
+        `SELECT comments.*, users.first, users.last, users.image FROM comments JOIN users ON comments.user_id = users.id WHERE marker_id = $1`,
+        [markerId]
+    );
 };
 
 module.exports.addNewComment = (user_id, comment, marker_id) => {
