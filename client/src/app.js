@@ -23,6 +23,7 @@ export default class App extends Component {
             image: "",
             bio: "",
             uploaderVisible: false,
+            newsFeed: [],
         };
 
         this.handleLogout = this.handleLogout.bind(this);
@@ -52,6 +53,14 @@ export default class App extends Component {
                     error: true,
                 });
             });
+
+        axios.get("/api/newsfeed").then((res) => {
+            console.log("news feed client route");
+            console.log(res.data);
+            this.setState({ newsFeed: res.data });
+            console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            console.log(this.state.newsFeed);
+        });
     }
 
     handleLogout(e) {
@@ -95,7 +104,14 @@ export default class App extends Component {
                         </div>
                     </div>
                     <div className="main">
-                        <div className="newsFeed">hello</div>
+                        <div className="newsFeed">
+                            {this.state.newsFeed.map((news) => (
+                                <ul key={news.id}>
+                                    <p>{news.first}</p>
+                                </ul>
+                            ))}
+                            hello
+                        </div>
                         <Route
                             exact
                             path="/"

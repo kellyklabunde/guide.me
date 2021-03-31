@@ -171,3 +171,21 @@ module.exports.addNewComment = (user_id, comment, marker_id) => {
         [user_id, comment, marker_id]
     );
 };
+
+module.exports.getNewsFeed = () => {
+    return db.query(
+        `SELECT 
+        users.first, 
+        users.last, 
+        users.image, 
+        markers.id, 
+        markers.marker_image, 
+        markers.title, 
+        markers.created_at
+        FROM markers
+        JOIN users 
+        ON markers.user_id = users.id 
+        ORDER BY markers.id DESC 
+        LIMIT 10`
+    );
+};

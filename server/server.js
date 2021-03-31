@@ -375,6 +375,13 @@ app.post("/api/googlemap/newcomment", (req, res) => {
         });
 });
 
+app.get("/api/newsfeed", (req, res) => {
+    console.log("news feed route");
+    db.getNewsFeed(req.session.userId).then((result) => {
+        res.json(result.rows);
+    });
+});
+
 app.get("/api/logout", (req, res) => {
     req.session.userId = null;
     res.redirect("/welcome");
