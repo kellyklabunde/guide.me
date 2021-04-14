@@ -1,6 +1,6 @@
 .googleMap {
     margin-top: 20px;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 /* INFO WINDOW - PIN AND COMMENTS */
@@ -48,12 +48,28 @@
     flex-direction: column;
 }
 
-.comment-info ul {
+.comments-session ul {
     display: flex;
     flex-direction: column;
+    padding: 0%;
 }
 
-.comment-info img {
+.comments-title {
+    font-size: 15px;
+    font-weight: bolder;
+    color: #20252b;
+    font-family: "Cairo", sans-serif;
+}
+
+.comments-session li {
+    display: flex;
+    border-bottom: 1px solid rgb(56, 56, 56);
+    align-items: center;
+    padding: 10px;
+    color: black;
+}
+
+.comments-session img {
     display: flex;
     width: 25px;
     height: 25px;
@@ -62,6 +78,11 @@
     object-fit: cover;
     margin-bottom: 10px;
     margin-right: 5px;
+}
+
+.googleMap form {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 /* ADD NEW PIN  */

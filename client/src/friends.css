@@ -1,6 +1,7 @@
 .friends-page {
     display: flex;
     justify-content: center;
+    margin-top: 50px;
 }
 
 .friendsandwannabes {
@@ -104,13 +105,11 @@
     align-items: center;
     padding: 10px;
     width: 300px;
-    /* justify-content: center; */
     text-decoration: none;
     color: black;
 }
 
 span {
-    /* display: flex; */
     flex-grow: 0;
     align-items: center;
     justify-content: center;

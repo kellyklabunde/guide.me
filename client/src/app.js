@@ -8,8 +8,8 @@ import OtherProfile from "./otherProfile";
 import FindPeople from "./findPeople";
 import Friends from "./friends";
 import GoogleMap from "./googleMap";
+import NewsFeed from "./newsFeed";
 import "./app.css";
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 export default class App extends Component {
     constructor(props) {
@@ -23,7 +23,6 @@ export default class App extends Component {
             image: "",
             bio: "",
             uploaderVisible: false,
-            newsFeed: [],
         };
 
         this.handleLogout = this.handleLogout.bind(this);
@@ -53,14 +52,6 @@ export default class App extends Component {
                     error: true,
                 });
             });
-
-        axios.get("/api/newsfeed").then((res) => {
-            console.log("news feed client route");
-            console.log(res.data);
-            this.setState({ newsFeed: res.data });
-            console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-            console.log(this.state.newsFeed);
-        });
     }
 
     handleLogout(e) {
@@ -103,22 +94,21 @@ export default class App extends Component {
                             />
                         </div>
                     </div>
-                    <div className="main">
-                        <div className="newsFeed">
-                            {this.state.newsFeed.map((news) => (
-                                <ul key={news.id}>
-                                    <p>{news.first}</p>
-                                </ul>
-                            ))}
-                            hello
+                    <div className="mapsAndFeed">
+                        <div className="main">
+                            <Route
+                                exact
+                                path="/"
+                                render={() => (
+                                    <GoogleMap
+                                        markerArr={this.state.markerArr}
+                                    />
+                                )}
+                            />
                         </div>
-                        <Route
-                            exact
-                            path="/"
-                            render={() => (
-                                <GoogleMap markerArr={this.state.markerArr} />
-                            )}
-                        />
+                        <>
+                            <NewsFeed />
+                        </>
                     </div>
                     <>
                         <Route
@@ -144,6 +134,7 @@ export default class App extends Component {
                         />
                         <Route path="/findPeople" component={FindPeople} />
                         <Route path="/friends" component={Friends} />
+                        <Route path="/newsFeed" component={NewsFeed} />
                     </>
                 </BrowserRouter>
                 <footer>

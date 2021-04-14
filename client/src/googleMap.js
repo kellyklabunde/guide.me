@@ -18,8 +18,8 @@ const center = {
 };
 
 const containerStyle = {
-    width: "800px",
-    height: "500px",
+    width: "900px",
+    height: "600px",
 };
 
 function MyComponent(markerArr) {
@@ -74,14 +74,11 @@ function MyComponent(markerArr) {
                     .get("/api/googlemap/comments", { params: { markerId } })
                     .then((res) => {
                         console.log("going to comments route");
-                        console.log(res.data);
                         setComments(res.data);
-                        console.log(res.data[0].user_id);
                         console.log(typeof res.data.user_id);
                         axios
                             .get(`/api/user/${res.data[0].user_id}`)
                             .then((res) => {
-                                console.log("bbbbbbbbbbbbbbbbbbbbbbbbbb");
                                 console.log(res.data);
                             });
                     });
@@ -170,7 +167,7 @@ function MyComponent(markerArr) {
                                 onLoad={onLoadMarker}
                                 clickable={true}
                                 position={marker}
-                                icon={"./images/Marker.png"}
+                                icon={"/images/Marker.png"}
                             />
                         </li>
                     ))}
@@ -201,19 +198,26 @@ function MyComponent(markerArr) {
                                     </div>
                                 </div>
                                 <div className="comments-session">
-                                    <p>Comments:</p>
-                                    <div className="comment-info">
+                                    <p className="comments-title">Comments:</p>
+                                    <ul>
                                         {comments.map((text) => (
-                                            <ul key={text.id}>
+                                            <li key={text.id}>
                                                 <img src={text.image} />
-                                                <p>
-                                                    {text.first} {text.last}
-                                                </p>
-                                                <p>{text.created_at}</p>
-                                                <p>{text.comment}</p>
-                                            </ul>
+                                                <div className="comments-info">
+                                                    <p>
+                                                        {text.first} {text.last}
+                                                    </p>
+                                                    <p>
+                                                        {" "}
+                                                        at {
+                                                            text.created_at
+                                                        }:{" "}
+                                                    </p>
+                                                    <p> {text.comment}</p>
+                                                </div>
+                                            </li>
                                         ))}
-                                    </div>
+                                    </ul>
                                 </div>
                                 <form onSubmit={handleCommentSubmit}>
                                     <input
@@ -247,7 +251,7 @@ function MyComponent(markerArr) {
                                         type="file"
                                         onChange={handleChangeImg}
                                     />
-                                    <select
+                                    {/* <select
                                         name="category"
                                         onChange={handleChangeCategory}
                                     >
@@ -258,7 +262,7 @@ function MyComponent(markerArr) {
                                         <option>Hiking</option>
                                         <option>Park</option>
                                         <option>Beach</option>
-                                    </select>
+                                    </select> */}
                                     <button type="submit">Add new Pin</button>
                                 </form>
                             </div>
