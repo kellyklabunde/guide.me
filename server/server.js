@@ -378,7 +378,16 @@ app.post("/api/googlemap/newcomment", (req, res) => {
 app.get("/api/newsfeed", (req, res) => {
     console.log("news feed route");
     db.getNewsFeed(req.session.userId).then((result) => {
-        res.json(result.rows);
+        let usersData = result.rows;
+
+        for (var i = 0; i < usersData.length; i++) {
+            if (usersData[i].user_id === req.session.userId) {
+                console.log("delete");
+                usersData.splice(i, 1);
+                i--;
+            }
+        }
+        res.json(usersData);
     });
 });
 

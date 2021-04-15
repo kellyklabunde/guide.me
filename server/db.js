@@ -178,7 +178,8 @@ module.exports.getNewsFeed = () => {
         users.first, 
         users.last, 
         users.image, 
-        markers.id, 
+        markers.id,
+        markers.user_id,
         markers.marker_image, 
         markers.title, 
         markers.created_at
