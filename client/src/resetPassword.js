@@ -74,12 +74,13 @@ export default class ResetPassword extends Component {
                             <input
                                 type="email"
                                 name="email"
-                                placeholder="E-Mail address"
+                                placeholder="email address"
                                 value={this.state.email}
                                 onChange={this.handleChange}
                             />
-                            <button type="submit">Send E-mail</button>
+                            <button type="submit">Send e-mail</button>
                         </form>
+                        <Link to="/">Back</Link>
                     </div>
                 )}
                 {this.state.step === 2 && (

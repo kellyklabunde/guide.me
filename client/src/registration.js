@@ -32,7 +32,7 @@ export default class Registration extends Component {
         });
         console.log("SUBMITTED THE FORM", this.state);
 
-        const { firstname, lastname, email, password } = this.state;
+        // const { firstname, lastname, email, password } = this.state;
 
         axios
             .post("/api/register", this.state)
