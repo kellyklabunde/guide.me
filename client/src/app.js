@@ -73,11 +73,11 @@ export default class App extends Component {
                             <img src="/images/Logo.png" />
                         </div>
                         <div className="navigation">
-                            <Link to="/friends">
-                                <img src="/images/Friends.png" />
-                            </Link>
                             <Link to="/">
                                 <img src="/images/Home.png" />
+                            </Link>
+                            <Link to="/friends">
+                                <img src="/images/Friends.png" />
                             </Link>
                             <Link to="/profile">
                                 <img
@@ -106,9 +106,19 @@ export default class App extends Component {
                                 )}
                             />
                         </div>
-                        <>
+                        {/* <>
                             <NewsFeed />
-                        </>
+                        </> */}
+                        <div className="feed">
+                            <Route
+                                exact
+                                path="/"
+                                render={() => (
+                                    <NewsFeed
+                                    />
+                                )}
+                            />
+                        </div>
                     </div>
                     <>
                         <Route

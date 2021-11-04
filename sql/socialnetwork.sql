@@ -1,6 +1,7 @@
 -- whenever you make any update to this file,
 -- you need to RUN the file again with `psql -d socialnetwork -f sql/socialnetwork.sql || heroku pg:psql -f tables/signatures.sql` 
 
+SET CLIENT_ENCODING TO 'utf8'; -- activate when it's running on Windows 
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS reset_codes;
 DROP TABLE IF EXISTS friendships;

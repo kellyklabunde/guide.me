@@ -2,7 +2,7 @@ const spicedPg = require("spiced-pg");
 
 const db = spicedPg(
     process.env.DATABASE_URL ||
-        "postgres:postgres:postgres@localhost:5432/socialnetwork"
+    "postgres:postgres:postgres@localhost:5432/socialnetwork"
 );
 
 module.exports.addUser = (first, last, email, password) => {
@@ -172,7 +172,7 @@ module.exports.addNewComment = (user_id, comment, marker_id) => {
     );
 };
 
-module.exports.getNewsFeed = () => {
+module.exports.getNewsFeed = (id) => {
     return db.query(
         `SELECT 
         users.first, 
@@ -183,10 +183,18 @@ module.exports.getNewsFeed = () => {
         markers.marker_image, 
         markers.title, 
         markers.created_at
-        FROM markers
+        FROM friendships 
         JOIN users 
-        ON markers.user_id = users.id 
+        ON (friendships.accepted = true
+            AND friendships.recipient_id = $1
+            AND friendships.sender_id = users.id)
+        OR (friendships.accepted = true
+            AND friendships.sender_id = $1
+            AND friendships.recipient_id = users.id)
+        JOIN markers
+        ON markers.user_id = users.id
         ORDER BY markers.id DESC 
-        LIMIT 10`
+        LIMIT 10`,
+        [id]
     );
 };

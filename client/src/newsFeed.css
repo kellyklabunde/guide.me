@@ -9,7 +9,8 @@
 .newsFeed {
     margin-left: 10px;
     margin-top: 20px;
-    border: 1px solid #f08136;
+    border: 2px solid #f08136;
+    border-radius: 5px;
     overflow-y: scroll;
     height: 600px;
     padding: 5px;
