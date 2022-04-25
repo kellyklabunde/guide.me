@@ -223,6 +223,7 @@ function MyComponent(markerArr) {
                                     <input
                                         type="text"
                                         name="comment"
+                                        autocomplete="off"
                                         placeholder="Insert your comment here..."
                                         onChange={handleChangeComment}
                                     />
