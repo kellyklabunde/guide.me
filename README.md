@@ -5,3 +5,5 @@ A social network using Google Maps API for friends to share and see each other's
 You won’t be able to start the project because of my secrets.json file.
 
 But Here are some GIFs showing the cool features of this application:
+
+![](client/public/images/gif1.gif)
