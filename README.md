@@ -4,7 +4,7 @@ A social network using Google Maps API for friends to share and see each other's
 # Attention: 
 You won’t be able to start the project because of my secrets.json file.
 
-But I invete you to check below some GIFs showing the cool features of this application:
+But I invite you to check below some GIFs showing the cool features of this application:
 
 # 1
 This first GIF shows a user entering her email and password. She is redirected to the main page, where she sees the latest updates from her friends – on the map and the chronological feed on the right.
