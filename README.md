@@ -6,4 +6,4 @@ You won’t be able to start the project because of my secrets.json file.
 
 But Here are some GIFs showing the cool features of this application:
 
-![](client/public/images/gif1.gif)
+![](client/public/images/gif 1.gif)
