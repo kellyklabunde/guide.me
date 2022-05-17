@@ -21,3 +21,9 @@ Here the user goes to the friend’s page and clicks on a user from her list of 
 In this last GIF, the user goes to her profile page and edits her bio description. Then, she logged out and logged in the one that the user previously requested a friendship. The current user still doesn’t have any friends so her main page has no data. She will navigate to the friend’s page and accept the invitation. Now on the home page, she sees the pins created by her new friend. 
 
 ![](client/public/images/gif3.gif)
+
+go to ..\guide.me
+
+```
+npm run dev
+```
