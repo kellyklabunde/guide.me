@@ -1,6 +1,8 @@
 node_modules
 .DS_Store
 secrets.json
+.env
+server/secrets
 client/public/bundle.js
 client/public/bundle.js.LICENSE.txt
 bundle.css

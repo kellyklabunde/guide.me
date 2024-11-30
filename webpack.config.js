@@ -1,6 +1,8 @@
 const path = require("path");
-
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpack = require('webpack');
+const dotenv = require('dotenv');
+dotenv.config();
 
 module.exports = () => ({
     entry: [
@@ -16,7 +18,9 @@ module.exports = () => ({
         hints: false,
     },
     devServer: {
-        contentBase: path.join(__dirname, "client", "public"),
+        static: {
+            directory: path.resolve(__dirname, "client", "public"),
+        },
         proxy: {
             "/": {
                 target: "http://localhost:3001",
@@ -26,14 +30,16 @@ module.exports = () => ({
                 ws: true,
             },
         },
-        port: "3000",
+        historyApiFallback: true,
+        port: 3000,
     },
     module: {
         rules: [
             {
                 test: /\.js$/,
                 loader: "babel-loader",
-            }, {
+            },
+            {
                 test: /\.css$/i,
                 use: [
                     MiniCssExtractPlugin.loader,
@@ -47,7 +53,14 @@ module.exports = () => ({
             },
         ],
     },
-    plugins: [new MiniCssExtractPlugin({
-        filename: 'bundle.css',
-    })],
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: "bundle.css",
+        }),
+        new webpack.DefinePlugin({
+            'process.env.AWS_KEY': JSON.stringify(process.env.AWS_KEY),
+            'process.env.AWS_SECRET': JSON.stringify(process.env.AWS_SECRET),
+            'process.env.GOOGLE_API_KEY': JSON.stringify(process.env.GOOGLE_API_KEY),
+        }),
+    ],
 });

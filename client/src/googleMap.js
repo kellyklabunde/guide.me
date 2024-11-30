@@ -6,11 +6,12 @@ import {
     Marker,
     InfoWindow,
 } from "@react-google-maps/api";
-import secrets from "/client/secrets.json";
 import googleMapsStyling from "../googleMapsStyling";
 import "./googleMap.css";
 
 import axios from "./axios";
+
+const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
 const center = {
     lat: 48.779045,
@@ -41,7 +42,7 @@ function MyComponent(markerArr) {
 
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
-        googleMapsApiKey: secrets.GOOGLE_API_KEY,
+        googleMapsApiKey: GOOGLE_API_KEY,
     });
 
     const [map, setMap] = React.useState(null);
